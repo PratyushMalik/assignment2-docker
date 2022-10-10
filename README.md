@@ -41,6 +41,11 @@ docker ps
 Here we can see various container details such as container ID, docker image that created the container, status, ports etc.
 ![](snips/ps.jpg)
 
+## View all containers (running or stopped)
+```
+docker ps -a
+```
+
 ## View content inside container 
 To see what is actually happening inside the container, we must open a URL with the specific ports mentioned during run command.
 In the previous step, we can see that the docker is running on the IP address that matches the local host IP address. 0.0.0.0 signifies that whatever IP is mapped to the local host will be given to the container as well. Therefore, we can use the following URL in a web browser to see inside the container.
@@ -59,22 +64,26 @@ Here, the container ID specific to the local host machine is used. Each time the
 The output simply shows the container ID when the container is stopped successfully.
 ![](snips/stop.jpg)
 
-## Delete image
+## Gracefully delete image
 To delete a downloaded image from the local machine, its referenced container must be removed first. Although the container was stopped before but still it creates a conflict. Therefore a normal deletion of the image will result in an error.
 ```
 docker rmi docker/getting-started
 ```
 ![](snips/delete-error.jpg)
+
+## Force delete image
 To force this deletion, use the -f argument.
 ```
 docker rmi -f docker/getting-started
 ```
 ![](snips/force-delete.jpg)
 
+## Delete stopped container
 To delete the stopped container, we use "rm" to remove the container ID from our list of unused containers.
 ```
 docker ps --filter status=exited -q
 ```
+This shows us the list of stopped containers.
 ![](snips/filter.jpg)
 ```
 docker rm 6eded07edad8
@@ -84,3 +93,26 @@ docker rm 6eded07edad8
 Once this is done, we can simply delete the image.
 ![](snips/delete.jpg)
 
+## Remove all
+Remove all unused containers, networks, images.
+```
+docker system prune
+```
+![](snips/system-prune.jpg)
+![](snips/pruned.jpg)
+
+# Task 2 - Import Hello World docker image from docker hub and run locally.
+```
+docker pull hello-world
+```
+![](snips/hello-world.jpg)
+
+```
+docker run hello-world
+```
+![](snips/run-hello-world.jpg)
+
+# Task 3 - Hello World fastapi application
+Create a requirements.txt file which contains our required package - fastapi.
+Create a python file which has the code for running our application - main.py.
+Make sure your conda environment has the necessary dependencies for this project.
