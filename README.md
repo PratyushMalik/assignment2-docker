@@ -127,3 +127,56 @@ conda activate ./venv
 conda install --file requirements.txt
 ```
 3. Create a python file which has the code for running our application - main.py.
+
+4. Run the main.py python file to check if the page is loading on loacalhost. Click the http link in the output to open in browser.
+```
+python main.py
+```
+![](snips/run_app_local.jpg)
+![](snips/message.jpg)
+
+use Ctrl + C to quit.
+![](snips/quit_app.jpg)
+
+5. Create Dockerfile with the necessary commands:
+```
+FROM python:3.9
+COPY . /app
+WORKDIR /app
+RUN pip install -r requirements.txt
+CMD uvicorn main:app --reload
+```
+
+6. Build Dockerfile
+```
+docker build -t hello-world-app .
+```
+![](snips/docker-build.jpg)
+
+7. Check the created docker image
+```
+docker images
+```
+![](snips/hello-image.jpg)
+
+8. Run the docker image
+```
+docker run -d -p 8000:8000 hello-world-app
+```
+![](snips/hello-run.jpg)
+
+Use the following [url](https://127.0.0.1:8000) to see the resulting webpage: https://127.0.0.1:8000
+
+9. Upload this image to docker hub
+In order to upload the image to docker hub, you need to create the image using the username for the docker hub account
+```
+docker build -t pratyushmalik/hello-world-app .
+```
+![](snips/hello-build.jpg)
+
+10. Upload to hub
+To upload this image to docker hub, we have to specify the tag for this build. In case we make changes in the code and build another image later on, we can upload that image to hub again with a different tag/version to specify that it's the same image with modifications.
+```
+docker push pratyushmalik/hello-world-app:latest
+```
+![](snips/hello-push.jpg)
