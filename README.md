@@ -113,6 +113,17 @@ docker run hello-world
 ![](snips/run-hello-world.jpg)
 
 # Task 3 - Hello World fastapi application
-Create a requirements.txt file which contains our required package - fastapi.
-Create a python file which has the code for running our application - main.py.
-Make sure your conda environment has the necessary dependencies for this project.
+1. Create a requirements.txt file which contains our required package - fastapi and uvicorn
+2. Create a venv with the installed requirements.
+```
+conda create --prefix ./venv python=3.9
+```
+![](snips/create-venv.jpg)
+
+```
+conda activate ./venv
+```
+```
+conda install --file requirements.txt
+```
+3. Create a python file which has the code for running our application - main.py.
