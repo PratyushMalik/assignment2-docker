@@ -183,6 +183,7 @@ docker push pratyushmalik/hello-world-app:latest
 ![](snips/hello-push.jpg)
 
 # Task 4 - Automate docker build and push to hub
+The final link to the docker image on docker hub is [here](https://hub.docker.com/repository/docker/pratyushmalik/hello-world-aapp)
 1. We will start with adding additional folders and files to our project folder  
 .github/workflows/main.yaml  
 2. Then we define the main.yaml file with the necessary information.  
@@ -217,3 +218,4 @@ name: Set up Docker Buildx
 ```
 6. No once we push the changes to our git repo, we will be able to see the first build happening automatically in github actions and the image will be pushed to out docker hub repo.
 7. If we make any changes to our code, ("message": "Hello World, but this time we used github actions"), once the changes are committed and pushed, a new image will be built and pushed to out docker hub.
+![](snips/workflows.jpg)
