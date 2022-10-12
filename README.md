@@ -183,4 +183,37 @@ docker push pratyushmalik/hello-world-app:latest
 ![](snips/hello-push.jpg)
 
 # Task 4 - Automate docker build and push to hub
-
+1. We will start with adding additional folders and files to our project folder  
+.github/workflows/main.yaml  
+2. Then we define the main.yaml file with the necessary information.  
+3. Specify branch for deployment.  
+```
+on:
+  push:
+   branches: [ main ]
+  pull_request:
+    branches: [ main ]
+```
+4. Specify username and password for docker hub login. Use github secrets for this.  
+```
+name: Login to Docker Hub
+        uses: docker/login-action@v2
+        with:
+          username: ${{ secrets.DOCKER_HUB_USERNAME }}
+          password: ${{ secrets.DOCKER_HUB_ACCESS_TOKEN }}
+```
+5. Specify build and push action.
+```
+name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v2
+      -
+        name: Build and push
+        uses: docker/build-push-action@v3
+        with:
+          context: .
+          file: ./Dockerfile
+          push: true
+          tags: ${{ secrets.DOCKER_HUB_USERNAME }}/hello-world-aapp:latest
+```
+6. No once we push the changes to our git repo, we will be able to see the first build happening automatically in github actions and the image will be pushed to out docker hub repo.
+7. If we make any changes to our code, ("message": "Hello World, but this time we used github actions"), once the changes are committed and pushed, a new image will be built and pushed to out docker hub.
