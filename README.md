@@ -6,7 +6,7 @@
 
 # Task 1 - Basic docker commands
 ## Import community docker image
-Downloading docker image from remote docker hub using the pull command. For example, we'll use "getting-started" docker image.
+Downloading docker image from remote docker hub using the pull command. For example, we'll use "getting-started" docker image.  
 In order to pull a specific version of that image, we can specify using "docker_image:version_name"
 ```
 docker pull docker/getting-started
@@ -22,7 +22,7 @@ docker images
 ![](snips/images.jpg)
 
 ## Run docker image
-For a community shared docker image, there usually is a docker run command available at the repository page.
+For a community shared docker image, there usually is a docker run command available at the repository page.  
 In the following command, -d represents detached mode that means the image will run in the background and not inside the terminal.
 -p represents port assignment, which we can assign to the host and the container for communication.
 80:80 represents the two port mentioned above, first one is for the host and second one is for the container.
@@ -33,7 +33,7 @@ As we specified -d, we don't get any interesting output because the container is
 ![](snips/run.jpg)
 
 ## View running containers
-In order to see which containers are actually runnning, we can do this.
+In order to see which containers are actually runnning, we can do this.  
 A local host can have multiple images downloaded and multiple containers running at the same time. Each image corresponds to one container.
 ```
 docker ps
@@ -113,6 +113,7 @@ docker run hello-world
 ![](snips/run-hello-world.jpg)
 
 # Task 3 - Hello World fastapi application
+The final link to the docker image on docker hub is [here](https://hub.docker.com/repository/docker/pratyushmalik/hello-world-app)
 1. Create a requirements.txt file which contains our required package - fastapi and uvicorn
 2. Create a venv with the installed requirements.
 ```
@@ -180,3 +181,6 @@ To upload this image to docker hub, we have to specify the tag for this build. I
 docker push pratyushmalik/hello-world-app:latest
 ```
 ![](snips/hello-push.jpg)
+
+# Task 4 - Automate docker build and push to hub
+
